@@ -24,13 +24,7 @@ xlabels=c("log10 (MDA5-protected/Total CytoRNA)","log10 (MDA5-protected/Total Cy
 xlabels=c(expression('log'[10]*' (MDA5-protected/Total CytoRNA)'),expression('log'[10]*' (MDA5-protected/Total CytoRNA)'),expression('log'[10]*' (MDA5-protected/Total CytoRNA)'),expression('log'[10]*' (MDA5-protected/Total CytoRNA)'))
 
 
-
-
-
 Ids=c("NT","AZA","shNT","shAZA")
-
-
-
 
 
 datanonInv<-as.matrix(map)
@@ -38,9 +32,6 @@ datanonInv<-as.matrix(map)
 dataInv<-dataInv[(dataInv[,1]>-3.0)&(dataInv[,1]<3.0),]
 
 datanonInv<-datanonInv[(datanonInv[,1]>-3.0)&(datanonInv[,1]<3.0),]
-
-
-
 
 xbklab<- seq(min(dataInv[,1]),max(dataInv[,1]),1)
 #print(xbklab)
@@ -63,96 +54,67 @@ cexmain=1.5
 
 Ind<-c(2,4)
 for (i in Ind){
-id=Ids[i-1]
+	id=Ids[i-1]
 
-png(paste(outDir,"/Inverted_Repeats_Reverse_ShNT_ratio_Histogram-",id,".png",sep=""),width=1500,height=1500,bg="white",res=200)
+	png(paste(outDir,"/Inverted_Repeats_Reverse_ShNT_ratio_Histogram-",id,".png",sep=""),width=1500,height=1500,bg="white",res=200)
 
+	#par(mfrow=c(2,2),cex=0.9)
+	par(mar=c(6,6,4,1),mgp=c(4, 2, 0),family="sans")
 
-
-#par(mfrow=c(2,2),cex=0.9)
-par(mar=c(6,6,4,1),mgp=c(4, 2, 0),family="sans")
-
-
-#barplot(counts,width=0.5,border="blue",ylim=c(0,350),cex.names=1.4,cex.main=1.3,cex.lab=1.5,cex.axis=1.5,col=c("darkblue","red"),ylab="Counts")
-
-maxy=max(max(max(dataInv[,2:5])),max(max(datanonInv[,2:5])))
-print (maxy)
+	maxy=max(max(max(dataInv[,2:5])),max(max(datanonInv[,2:5])))
+	print (maxy)
 
 
 
-maxy=max(max(dataInv[,i]),max(datanonInv[,i]))
+	maxy=max(max(dataInv[,i]),max(datanonInv[,i]))
 
-print (maxy)
-maxy=(maxy%/%100+1)*100
-maxy=4000
-axlimy=c(0,maxy)
-
-
-cexaxis=1.2
-cexlab=2
-cextitle=2
-cexmain=1.5
-
-minx=min(dataInv[,1])
-
-maxx=max(dataInv[,1])
-
-mix=-3
-maxx=3
+	print (maxy)
+	maxy=(maxy%/%100+1)*100
+	maxy=4000
+	axlimy=c(0,maxy)
 
 
-axlimx=c(minx,maxx)
+	cexaxis=1.2
+	cexlab=2
+	cextitle=2
+	cexmain=1.5
 
-print(maxy)
+	minx=min(dataInv[,1])
 
-mycolRed <- rgb(255, 0, 0, max = 255, alpha = 150, names = "red70")
-mycolblue <- rgb(0, 0, 255, max = 255, alpha = 200, names = "blue70")
+	maxx=max(dataInv[,1])
 
-to=maxy-200
-from=600
-plot(datanonInv[,1],datanonInv[,i],lwd=3,xticlab=NA,yticlab=NA,type="h",ylim=axlimy,cex=1.5,border=mycolblue,main=lmain[i-1],font=2,main.font=2,font.lab=2,
-		ylab="Counts",xlab=xlabels[i-1],col=mycolblue,cex.main=2,cex.lab=1.5,cex.axis=1.5,axes=F)
-
-
-par(new = TRUE)
+	mix=-3
+	maxx=3
 
 
-#plot(dataInv[,1],dataInv[,i],lwd=3,type="h",border=mycolRed,ylim=axlimy,col=mycolRed,axes=F,ylab="",xlab="")
+	axlimx=c(minx,maxx)
 
-plot(dataInv[,1],dataInv[,i],lwd=3,xticlab=NA, yticlab=NA,type="h",ylim=axlimy,col=mycolRed,ylab="",xlab="",cex.lab=1.5,cex.axis=1.5,axes=F,font=2,main.font=2)
+	print(maxy)
 
+	mycolRed <- rgb(255, 0, 0, max = 255, alpha = 150, names = "red70")
+	mycolblue <- rgb(0, 0, 255, max = 255, alpha = 200, names = "blue70")
 
-
-
-
-axis(1,at=c(-3,-2,-1,0,1,2,3), labels=FALSE)
-text(x =c(-3,-2,-1,0,1,2,3),-300,labels = c(-3,-2,-1,0,1,2,3), ,srt = 0, pos=1,xpd = TRUE,cex=1.5,font=2)
-
-
-
+	to=maxy-200
+	from=600
+	plot(datanonInv[,1],datanonInv[,i],lwd=3,xticlab=NA,yticlab=NA,type="h",ylim=axlimy,cex=1.5,border=mycolblue,main=lmain[i-1],font=2,main.font=2,font.lab=2,
+			ylab="Counts",xlab=xlabels[i-1],col=mycolblue,cex.main=2,cex.lab=1.5,cex.axis=1.5,axes=F)
 
 
-axis(2,at=c(0,1000,2000,3000,4000), labels=FALSE)
-text(y =c(0,1000,2000,3000,4000),-3.5,labels = c(0,1000,2000,3000,4000), ,srt = 90, adj=0.5, xpd = TRUE,cex=1.5,font=2)
+	par(new = TRUE)
+
+	plot(dataInv[,1],dataInv[,i],lwd=3,xticlab=NA, yticlab=NA,type="h",ylim=axlimy,col=mycolRed,ylab="",xlab="",cex.lab=1.5,cex.axis=1.5,axes=F,font=2,main.font=2)
+
+	axis(1,at=c(-3,-2,-1,0,1,2,3), labels=FALSE)
+	text(x =c(-3,-2,-1,0,1,2,3),-300,labels = c(-3,-2,-1,0,1,2,3), ,srt = 0, pos=1,xpd = TRUE,cex=1.5,font=2)
+
+	axis(2,at=c(0,1000,2000,3000,4000), labels=FALSE)
+	text(y =c(0,1000,2000,3000,4000),-3.5,labels = c(0,1000,2000,3000,4000), ,srt = 90, adj=0.5, xpd = TRUE,cex=1.5,font=2)
 
 
+	legend(0.5,maxy-10,c("Non-IR Alus","IR Alus"), lty=c(1,1), cex=1.3, lwd=c(6,6),col=c(mycolblue,mycolRed),text.font=2)
 
 
-legend(0.5,maxy-10,c("Non-IR Alus","IR Alus"), lty=c(1,1), cex=1.3, lwd=c(6,6),col=c(mycolblue,mycolRed),text.font=2)
-
-
-
-
-#axis(2,at=c(0,1000,2000,3000,3500),labesl=c(0,1000,2000,3000,3500),cex.axis=cexaxis)
-
-#axis(1,cex.axis=cexaxis)
-
-
-
-
-
-
-box()
+	box()
 
 
 }

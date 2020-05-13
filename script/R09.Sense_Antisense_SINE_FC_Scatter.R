@@ -10,17 +10,9 @@ outDir=args[2]
 #map = read.table("/cluster/home/smarhon/ADAR/hg19.RepeatElements.GC.CpG.txt",header=T)
 map = read.table(paste(inpDir,"/LacZAZA_D5_vs_LacZNT_D5_Sense_AntiSense_FC.txt",sep=""),row.names=1,header=T)
 
-
-
-
-
-
 dim(map)
 
-
-
 data<-map[grepl("SINE",map[,9]),]
-
 
 dim(data)
 
@@ -59,10 +51,6 @@ TRFwd=dataFwd[(dataFwd[,1]>0)&(dataFwd[,2]>0),]
 
 print("TRFwd=")
 print (dim(TRFwd)[1])
-
-
-
-
 
 TLboth=dataBoth[(dataBoth[,1]>0)&(dataBoth[,2]<=0),]
 
@@ -121,22 +109,7 @@ BLFwd=dataFwd[(dataFwd[,1]<=0)&(dataFwd[,2]<=0),]
 print("BLFwd=")
 print (dim(BLFwd)[1])
 
-
-
-
-
-
-
-
-
-
-
-
-
 maxx=max(max(dataRev[,1]),max(dataRev[,2]),max(dataFwd[,1]),max(dataFwd[,2]),max(dataBoth[,1]),max(dataBoth[,2]),max(dataNone[,1]),max(dataNone[,2]))
-
-
-
 
 minx=min(min(dataRev[,1]),min(dataRev[,2]),min(dataFwd[,1]),min(dataFwd[,2]),min(dataBoth[,1]),min(dataBoth[,2]),min(dataNone[,1]),min(dataNone[,2]))
 
@@ -147,20 +120,10 @@ minx
 maxx=10
 minx=-maxx
 
-
-
-
-
-
-
-
 png(paste(outDir,"/Sense_Antisense_SINE_FC_Scatter.png",sep=""),width=1800,height=1800,bg="white",res=200)
 
 par(mfrow=c(1,1),cex=0.9)
 par(mar=c(9,10,4,1),mgp=c(6, 2, 0))
-
-
-
 
 axlimx=c(minx,maxx)
 axlimy=c(minx,maxx)
@@ -169,9 +132,6 @@ cexaxis=1.5
 cexlab=2
 cextitle=2
 cexmain=1.5
-
-
-
 
 plot(dataNone[,2],dataNone[,1],pch=20,xlim=axlimx,ylim=axlimy,cex.lab=cexlab,cex.axis=cexaxis,xlab="log(5-AZA-CdR/Mock-treatd)\nSense",ylab="AntiSense \n log(5-AZA-CdR/Mock-treatd)",
 	cex.main=cexmain,main="SINEs",col="gray",font=2,font.lab=2)
@@ -190,7 +150,6 @@ lines(c(minx,maxx),c(0,0),col="black",lty=2,lwd=1.5)
 
 
 legend(minx,maxx, c("Both NS","AntiSense Sig.","Sense Sig.","Both Sig."),pch=20,pt.cex=3,col=c("gray","blue","red","green"),cex=1.3,text.font=2)
-
 
 
 dev.off()

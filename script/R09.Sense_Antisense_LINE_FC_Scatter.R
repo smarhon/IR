@@ -31,9 +31,6 @@ dataBoth<-data[(abs(data[,1])>=1)&(abs(data[,2])>=1)&(data[,4]<=0.05)&(data[,3]<
 dataNone<-data[((abs(data[,1])<1)&(abs(data[,2])<1))|((data[,4]>0.05)&(data[,3]>0.05))|((data[,8]<thr)&(data[,7]<thr2))|((data[,6]<thr)&(data[,5]<thr2)),]
 
 
-
-#dataNone<-data[((abs(data[,1])<1)&(abs(data[,2])<1))|((data[,4]>0.05)&(data[,3]>0.05)),]
-
 print(dim(dataBoth))
 
 print(dim(dataRev))
@@ -119,22 +116,7 @@ BLFwd=dataFwd[(dataFwd[,1]<=0)&(dataFwd[,2]<=0),]
 print("BLFwd=")
 print (dim(BLFwd)[1])
 
-
-
-
-
-
-
-
-
-
-
-
-
 maxx=max(max(dataRev[,1]),max(dataRev[,2]),max(dataFwd[,1]),max(dataFwd[,2]),max(dataBoth[,1]),max(dataBoth[,2]),max(dataNone[,1]),max(dataNone[,2]))
-
-
-
 
 minx=min(min(dataRev[,1]),min(dataRev[,2]),min(dataFwd[,1]),min(dataFwd[,2]),min(dataBoth[,1]),min(dataBoth[,2]),min(dataNone[,1]),min(dataNone[,2]))
 
@@ -144,13 +126,6 @@ minx
 
 maxx=10
 minx=-maxx
-
-
-
-
-
-
-
 
 png(paste(outDir,"/Sense_Antisense_LINE_FC_Scatter.png",sep=""),width=1800,height=1800,bg="white",res=200)
 
@@ -168,9 +143,6 @@ cexlab=2
 cextitle=2
 cexmain=1.5
 
-
-
-
 plot(dataNone[,2],dataNone[,1],pch=20,xlim=axlimx,ylim=axlimy,cex.lab=cexlab,cex.axis=cexaxis,xlab="log(5-AZA-CdR/Mock-treatd)\nSense",ylab="AntiSense \n log(5-AZA-CdR/Mock-treatd)",
 	cex.main=cexmain,main="LINEs",col="gray",font=2,font.lab=2)
 
@@ -184,8 +156,6 @@ points(dataBoth[,2],dataBoth[,1],pch=20,col="green")
 
 lines(c(0,0),c(minx,maxx),col="black",lty=2,lwd=1.5)
 lines(c(minx,maxx),c(0,0),col="black",lty=2,lwd=1.5)
-
-
 
 legend(minx,maxx, c("Both NS","AntiSense Sig.","Sense Sig.","Both Sig."),pch=20,pt.cex=3,col=c("gray","blue","red","green"),cex=1.3,text.font=2)
 
