@@ -8,10 +8,10 @@ mandatorily need two arguments, but some of the python script files will save th
 ## Pre-requisites:
 These tools/packages should be installed and defined in the system path:
 
-Python v. 2.7<br />
-samtools<br />
-bedtools<br />
-subread<br />
-deeptools v. 3.2.1<br />
-R v. 3.5.0<br />
+* Python v. 2.7<br />
+* samtools<br />
+* bedtools<br />
+* subread<br />
+* deeptools v. 3.2.1<br />
+* R v. 3.5.0<br />
 
