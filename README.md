@@ -9,14 +9,9 @@ mandatorily need two arguments, but some of the python script files will save th
 These tools/packages should be installed and defined in the system path:
 
 Python v. 2.7
-
 samtools
-
 bedtools
-
 subread
-
 deeptools v. 3.2.1
-
 R v. 3.5.0
 
